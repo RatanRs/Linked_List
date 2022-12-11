@@ -113,8 +113,9 @@ public class LinkedList {
 		}
 		return null;
 	}
+
 	/*
-	 * Method to insert elements..
+	 * Method to insert elements..2
 	 */
 	public void insertElement(Object input, Object value) {
 		Node newNode = new Node(value);
@@ -136,48 +137,48 @@ public class LinkedList {
 		newNode.reference = right;
 		left.reference = newNode;
 	}
+
+	public void deleteAtPosition(Object data) {
+		int index = 0;
+		Node left = head;
+		Node right = left.reference;
+		while (right.data != data) {
+			left = left.reference;
+			right = right.reference;
+			index++;
+		}
+		left.reference = right.reference;
+
+	}
+
 	/*
 	 * Method for displaying the added elements
 	 */
-	public void display() {
-		if (head == null)
-			System.out.println("List is empty");
-		else {
-			Node temp = head;
-			while (temp != null) {
-				if (temp.reference != null) {
-					System.out.print(temp.data + "=>");
-				} else
-					System.out.println(temp.data);
-				temp = temp.reference;
-			}
+	public Object display() {
+		int values = 0;
+		Node temp = head;
+		while (temp != null) {
+			values++;
+			if (temp.reference != null)
+				System.out.print(temp.data + " > ");
+			else
+				System.out.println(temp.data);
+			temp = temp.reference;
 		}
+		return "The size of list: " + values;
 	}
-	
-	
-	
+
 	public static void main(String[] args) {
 		System.out.println("Welcome to the Linked List program");
 		LinkedList list = new LinkedList();
 		Scanner input = new Scanner(System.in);
 		list.addFirst(56);
-		list.display();
+		list.addLast(30);
+		list.addLast(40);
 		list.addLast(70);
 		list.display();
-		
-		System.out.println("Enter position at which you want to add node: ");
-		int position = input.nextInt();
-		list.addAtPosition(30, position);
-		list.display();
-		System.out.println("Enter element to search in linked list: ");
-		int element = input.nextInt();
-		System.out.println(list.searchElement(element));
-		System.out.println("Enter element after which you want to add: ");
-		int data = input.nextInt();
-		System.out.println("Enter value to add: ");
-		int value = input.nextInt();
-		list.insertElement(data, value);
-		list.display();
+        list.deleteAtPosition(40);
+		System.out.println(list.display());
 	}
 
 }
