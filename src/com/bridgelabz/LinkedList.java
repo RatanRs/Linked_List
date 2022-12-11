@@ -58,6 +58,7 @@ public class LinkedList {
 			temp.reference = newNode;
 		}
 	}
+
 	public void addAtPosition(Object data, int position) {
 		int index = 0;
 		Node newNode = new Node(data);
@@ -70,9 +71,14 @@ public class LinkedList {
 			right = right.reference;
 			index++;
 		}
-		
+
 		newNode.reference = right;
 		left.reference = newNode;
+	}
+
+	public void deleteFirst()
+	{
+		head = head.reference;
 	}
 	/*
 	 * Method for displaying the added elements
@@ -92,7 +98,9 @@ public class LinkedList {
 		}
 	}
 	
-	
+	/*
+	 * Program execution starts from main method
+	 */
 	public static void main(String[] args) {
 		System.out.println("Welcome to the Linked List program");
 		LinkedList list = new LinkedList();
@@ -106,6 +114,14 @@ public class LinkedList {
 		int position = input.nextInt();
 		list.addAtPosition(30,position);
 		list.display();
+		System.out.println("Deleted data at first position");
+		list.deleteFirst();
+		list.display();
+		list.deleteFirst();
+		list.display();
+		list.deleteFirst();
+		list.display();
+		
 	}
 
 }
