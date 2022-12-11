@@ -76,12 +76,27 @@ public class LinkedList {
 		left.reference = newNode;
 	}
 
-	public void deleteFirst()
-	{
+	public void deleteFirst() {
 		head = head.reference;
 	}
+
+	public void deleteLast() {
+
+		if (head == null)
+			System.out.println("Linked List is Empty");
+		else if (head.reference == null)
+			head = null;
+		else {
+			Node temp = head;
+			while (temp.reference.reference != null) {
+				temp = temp.reference;
+			}
+			temp.reference = null;
+		}
+	}
+
 	/*
-	 * Method for displaying the added elements
+	 * Logic for displaying the added elements
 	 */
 	public void display() {
 		if (head == null)
@@ -97,10 +112,7 @@ public class LinkedList {
 			}
 		}
 	}
-	
-	/*
-	 * Program execution starts from main method
-	 */
+
 	public static void main(String[] args) {
 		System.out.println("Welcome to the Linked List program");
 		LinkedList list = new LinkedList();
@@ -109,19 +121,16 @@ public class LinkedList {
 		list.display();
 		list.addLast(70);
 		list.display();
-		
+		// System.out.println("Enter position after which you want to add node: ");
 		System.out.println("Enter position at which you want to add node: ");
 		int position = input.nextInt();
-		list.addAtPosition(30,position);
+		list.addAtPosition(30, position);
 		list.display();
-		System.out.println("Deleted data at first position");
-		list.deleteFirst();
+		System.out.println("Deleted data at last position");
+		list.deleteLast();
 		list.display();
-		list.deleteFirst();
+		list.deleteLast();
 		list.display();
-		list.deleteFirst();
-		list.display();
-		
 	}
 
 }
